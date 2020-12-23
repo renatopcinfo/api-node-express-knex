@@ -1,16 +1,16 @@
 module.exports = (app) => {
 
     const get = (req, res) => {
-        app.db('filmes')
-            .then((filmes) => res.status(200).json(filmes))
+        app.db('clientes')
+            .then((clientes) => res.status(200).json(clientes))
             .catch(err => res.status(500).json(err))
     }
 
     const save = (req, res) => {
-        const movie = req.body
-        console.log(movie)
-        app.db('filmes')
-            .insert(movie)
+        const cliente = req.body
+        console.log(cliente)
+        app.db('clientes')
+            .insert(cliente)
             .then((data) => res.status(201).json(data))
             .catch(err => res.status(500).json(err))
     }
@@ -18,19 +18,19 @@ module.exports = (app) => {
     const getById = (req, res) => {
         const id = req.params.id
 
-        app.db('filmes')
+        app.db('clientes')
             .where({id: id})
             .first()
-            .then(filme => res.status(200).json(filme))
+            .then(cliente => res.status(200).json(cliente))
         
     }
 
     const put = (req, res) => {
         const id = req.params.id
-        const filme = req.body
+        const cliente = req.body
 
-        app.db('filmes')
-            .update(filme)
+        app.db('clientes')
+            .update(cliente)
             .where({id: id})
             .then((data) => res.status(200).json(data))
             .catch(err => res.status(500).json(err))
@@ -39,7 +39,7 @@ module.exports = (app) => {
     const remove = async (req, res) => {
         const id = req.params.id
         try {
-            const register = await app.db('filmes')
+            const register = await app.db('clientes')
                 .where({id: id})
                 .del()
             if(register) {

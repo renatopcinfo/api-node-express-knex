@@ -8,7 +8,9 @@ app.db = db;
 app.use(bodyParser.json())
 
 consign()
-    .include("./api/movies.js")
+    .include("./api/clients.js")
+    .include("./api/orders.js")
+    .include("./api/products.js")
     .then("./routes.js")
     .into(app)
 
